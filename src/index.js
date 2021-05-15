@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
+import { Provider } from 'react-redux';
 import App from './App';
 import store from './redux/store';
+// import { myActionCreator } from './redux/actions';
+import './index.scss';
 
-console.log(store);
+console.log(store.getState());
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
