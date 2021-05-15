@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
-import * as actions from '../src/redux/actions';
+import * as actions from '../src/redux/contacts/contacts-actions';
 
 import ContactsList from './components/ContactsList';
 import ContactsListItem from './components/ContactListItem';
@@ -29,7 +29,7 @@ function App({ items, filter, onSubmit, onChange, onDelete }) {
 
           <ContactsList>
             <ContactsListItem
-              contacts={filteredContactList}
+              items={filteredContactList}
               onDelete={() => onDelete}
             />
           </ContactsList>
@@ -46,9 +46,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: value => dispatch(actions.submit(value)),
-  onChange: value => dispatch(actions.remove(value)),
-  onDelete: value => dispatch(actions.filter(value)),
+  onSubmit: value => dispatch(actions.addContact(value)),
+  onDelete: value => dispatch(actions.removeContact(value)),
+  onChange: value => dispatch(actions.addFilter(value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

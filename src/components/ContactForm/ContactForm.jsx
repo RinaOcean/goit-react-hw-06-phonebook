@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../redux/contacts/contacts-actions';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import './ContactForm.scss';
@@ -26,7 +28,7 @@ class ContactForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    this.props.onSubmit({ id: nanoid(), ...this.state });
+    this.props.onSubmit({ ...this.state });
     this.reset();
   };
 
@@ -65,4 +67,10 @@ class ContactForm extends Component {
     );
   }
 }
-export default ContactForm;
+
+const mapDispatchFromProps = dispatch => ({
+  onSubmit: ({ name, number }) =>
+    dispatch(actions.addContact({ name, number })),
+});
+
+export default connect(null, mapDispatchFromProps)(ContactForm);
