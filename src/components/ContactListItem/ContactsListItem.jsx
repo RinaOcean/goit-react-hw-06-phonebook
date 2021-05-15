@@ -38,16 +38,6 @@ const getFilteredContactList = (allContacts, filter) => {
   );
 };
 
-// const mapStateToProps = state => {
-//   const { filter, items } = state.contacts;
-//   const normalizedFilter = filter.toLocaleLowerCase();
-//   const filteredContactList = getFilteredContactList(items, filter);
-
-//   return {
-//     contacts: filteredContactList,
-//   };
-// };
-
 const mapStateToProps = ({ contacts: { items, filter } }) => ({
   contactsItems: getFilteredContactList(items, filter),
 });

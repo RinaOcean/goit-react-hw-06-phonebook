@@ -9,7 +9,8 @@ const items = createReducer([], {
 });
 
 const filter = createReducer('', {
-  [actions.addFilter]: (state, { payload }) => payload,
+  // _ заменяет неиспользуемый параметр(в данном случае state)
+  [actions.addFilter]: (_, { payload }) => payload,
 });
 
 export default combineReducers({

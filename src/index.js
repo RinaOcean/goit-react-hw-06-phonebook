@@ -3,10 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './App';
 import store from './redux/store';
-// import { myActionCreator } from './redux/actions';
-import './index.scss';
 
-console.log(store.getState());
+import './index.scss';
 
 ReactDOM.render(
   <React.StrictMode>
