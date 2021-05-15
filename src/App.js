@@ -11,12 +11,6 @@ import Filter from './components/Filter';
 import './App.scss';
 
 function App({ items, filter, onSubmit, onChange, onDelete }) {
-  const normalizedFilter = filter.toLocaleLowerCase();
-
-  const filteredContactList = items.filter(item =>
-    item.name.toLocaleLowerCase().includes(normalizedFilter),
-  );
-
   return (
     <div className="phonebook">
       <h1>Phonebook</h1>
@@ -29,8 +23,8 @@ function App({ items, filter, onSubmit, onChange, onDelete }) {
 
           <ContactsList>
             <ContactsListItem
-              items={filteredContactList}
-              onDelete={() => onDelete}
+            // items={filteredContactList}
+            // onDelete={() => onDelete}
             />
           </ContactsList>
         </>

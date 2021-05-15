@@ -4,9 +4,9 @@ import * as actions from '../../redux/contacts/contacts-actions';
 
 import './ContactsListItem.scss';
 
-const ContactsListItem = ({ onDelete, items }) => (
+const ContactsListItem = ({ onDelete, contactsItems }) => (
   <>
-    {items.map(({ id, name, number }) => {
+    {contactsItems.map(({ id, name, number }) => {
       return (
         <li key={id} className="ContactsListItem">
           {name}: {number}
@@ -30,8 +30,26 @@ ContactsListItem.propTypes = {
   onDelete: PropTypes.func,
 };
 
-const mapStateToProps = state => ({
-  contacts: state.contacts.items,
+const getFilteredContactList = (allContacts, filter) => {
+  const normalizedFilter = filter.toLocaleLowerCase();
+
+  return allContacts.filter(item =>
+    item.name.toLocaleLowerCase().includes(normalizedFilter),
+  );
+};
+
+// const mapStateToProps = state => {
+//   const { filter, items } = state.contacts;
+//   const normalizedFilter = filter.toLocaleLowerCase();
+//   const filteredContactList = getFilteredContactList(items, filter);
+
+//   return {
+//     contacts: filteredContactList,
+//   };
+// };
+
+const mapStateToProps = ({ contacts: { items, filter } }) => ({
+  contactsItems: getFilteredContactList(items, filter),
 });
 
 const mapDispatchFromProps = dispatch => ({
